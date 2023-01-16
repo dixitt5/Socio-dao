@@ -4,8 +4,10 @@ import Grid2 from "@mui/material/Unstable_Grid2"; // Grid version 2
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
+  const history = useNavigate();
   return (
     <div className="Banner">
       <Grid
@@ -20,7 +22,7 @@ const Banner = () => {
           <Typography variant="subtitle1" className="newtext">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
             repellendus esse consequuntur incidunt ipsam omnis eius, beatae
-            illum aliquid delectus cupiditate dolor amet architecto.
+            illum aliquid delectus cupiditate dolor amet architecto
           </Typography>
 
           <ButtonGroup
@@ -30,7 +32,13 @@ const Banner = () => {
             className="new-btn"
           >
             <Button>Read Docs</Button>
-            <Button>Get started</Button>
+            <Button
+              onClick={() => {
+                history("/main");
+              }}
+            >
+              Get started
+            </Button>
           </ButtonGroup>
         </Grid>
         <Grid xs={6}>

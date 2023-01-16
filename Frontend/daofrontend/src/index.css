@@ -12,6 +12,8 @@ code {
     monospace;
 }
 
+/* ----------------------navbar-css------------------------------------------------------------------------------- */
+
 .appbar{
   color: white;
   font-weight: bolder;
@@ -22,6 +24,8 @@ code {
 .butn{
   color: black !important;
 }
+
+/* -----------------------------------------------------Home-page-css-------------------------------------------------- */
 .Banner{
   margin-top: 30px;
   padding: 20px !important;
@@ -40,6 +44,10 @@ code {
   }
   .newtext{
     padding: 20px;
+  }
+  .inside-main{
+    margin-top: 0px !important;
+    margin-left: 0px !important;
   }
 }
 .img-1{
@@ -66,5 +74,37 @@ code {
   margin-top: 10px;
   padding: 10px;
   margin-left: 25px;
+}
+/* ------------------------------------main-page-css--------------------------------------------------------------- */
+.main{
+  margin: 20px;
+  padding: 10px;
+  margin-top: 40px;
+}
 
+.inside-main{
+  margin-top: 5px !important;
+
+
+}
+
+.bread{
+  cursor: pointer;
+}
+
+.newtextmain{
+  padding-right: 80px !important;
+}
+.main-btns{
+  margin-top: 50px !important;
+}
+.top{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.inside{
+  padding: 10px !important;
+  margin-left: 2px;
+  margin-right: 2px;
+  cursor: pointer;
 }
