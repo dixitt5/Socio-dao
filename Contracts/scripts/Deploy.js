@@ -1,5 +1,7 @@
 const hre = require("hardhat");
 const ethers = hre.ethers;
+require("dotenv").config({ path: ".env" });
+// const { CRYPTO_DEV_TOKEN_CONTRACT_ADDRESS } = require("../constants");
 
 async function main() {
   // Compile our Contracts, just in case
@@ -7,8 +9,8 @@ async function main() {
 
   // Get a signer from the HardHard environment
   // Learn about signers here: https://docs.ethers.io/v4/api-wallet.html
-  const [tokenRecipient, timelockAdmin, guardian] = await ethers.getSigners();
-
+  const [tokenRecipient] = await ethers.getSigners();
+  console.log(tokenRecipient.address);
   // This gets the contract from
   const Token = await hre.ethers.getContractFactory("socioTokens");
   const token = await Token.deploy();
@@ -18,16 +20,16 @@ async function main() {
   // Deploy Timelock
   const delay = 172800;
   const Timelock = await ethers.getContractFactory("TimeLock");
-  const timelock = await Timelock.deploy(timelockAdmin.address, delay);
+  const timelock = await Timelock.deploy(tokenRecipient.address, delay);
   await timelock.deployed();
   await timelock.deployTransaction.wait();
 
   // Deploy Governance
   const Gov = await ethers.getContractFactory("socioContract");
   const gov = await Gov.deploy(
-    timelock.address,
+    tokenRecipient.address,
     token.address,
-    guardian.address
+    tokenRecipient.address
   );
   await gov.deployed();
   await gov.deployTransaction.wait();
