@@ -18,3 +18,53 @@ code {
   background-color: rgba(0,0,0, 0.4);
   backdrop-filter: blur(5px);
 }
+
+.butn{
+  color: black !important;
+}
+.Banner{
+  margin-top: 30px;
+  padding: 20px !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .img-1{
+    width: 300px !important;
+  }
+  .typo{
+    padding-left: 20px;
+    text-decoration: underline;
+    color: #1976D2;
+    margin-top: 10px;
+  }
+  .newtext{
+    padding: 20px;
+  }
+}
+.img-1{
+  padding-left: 20px;
+  width: 400px;
+  object-fit: contain;
+}
+
+.typo{
+  padding-left: 40px;
+  text-decoration: underline;
+  color: #1976D2;
+  display: block;
+  margin-top: 70px !important;
+  
+  
+}
+.newtext{
+  padding: 20px;
+  margin-left: 20px !important;
+}
+
+.new-btn{
+  margin-top: 10px;
+  padding: 10px;
+  margin-left: 25px;
+
+}
