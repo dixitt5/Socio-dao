@@ -1,0 +1,110 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* ----------------------navbar-css------------------------------------------------------------------------------- */
+
+.appbar{
+  color: white;
+  font-weight: bolder;
+  background-color: rgba(0,0,0, 0.4);
+  backdrop-filter: blur(5px);
+}
+
+.butn{
+  color: black !important;
+}
+
+/* -----------------------------------------------------Home-page-css-------------------------------------------------- */
+.Banner{
+  margin-top: 30px;
+  padding: 20px !important;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .img-1{
+    width: 300px !important;
+  }
+  .typo{
+    padding-left: 20px;
+    text-decoration: underline;
+    color: #1976D2;
+    margin-top: 10px;
+  }
+  .newtext{
+    padding: 20px;
+  }
+  .inside-main{
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+  }
+}
+.img-1{
+  padding-left: 20px;
+  width: 400px;
+  object-fit: contain;
+}
+
+.typo{
+  padding-left: 40px;
+  text-decoration: underline;
+  color: #1976D2;
+  display: block;
+  margin-top: 70px !important;
+  
+  
+}
+.newtext{
+  padding: 20px;
+  margin-left: 20px !important;
+}
+
+.new-btn{
+  margin-top: 10px;
+  padding: 10px;
+  margin-left: 25px;
+}
+/* ------------------------------------main-page-css--------------------------------------------------------------- */
+.main{
+  margin: 20px;
+  padding: 10px;
+  margin-top: 40px;
+}
+
+.inside-main{
+  margin-top: 5px !important;
+
+
+}
+
+.bread{
+  cursor: pointer;
+}
+
+.newtextmain{
+  padding-right: 80px !important;
+}
+.main-btns{
+  margin-top: 50px !important;
+}
+.top{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.inside{
+  padding: 10px !important;
+  margin-left: 2px;
+  margin-right: 2px;
+  cursor: pointer;
+}
