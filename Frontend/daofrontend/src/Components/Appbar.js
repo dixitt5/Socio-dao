@@ -5,8 +5,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import { Home, connectWallet } from "../Components/wallet";
+// import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { connectWallet } from "../Components/wallet";
 // import { useAccount, useProvider } from "wagmi";
 // import aapp from "../_app";
 
@@ -29,7 +29,7 @@ export default function ButtonAppBar() {
             color="inherit"
             variant="contained"
             className="butn"
-            onClick={connectWallet()}
+            onClick={connectWallet}
           >
             Connect Wallet
           </Button>

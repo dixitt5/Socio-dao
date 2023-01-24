@@ -2,7 +2,7 @@ import { BigNumber, providers, utils } from "ethers";
 import React, { useEffect, useRef, useState } from "react";
 import Web3Modal from "web3modal";
 
-export function Home() {
+function Home() {
   const [walletConnected, setWalletConnected] = useState(false);
   const web3ModalRef = useRef();
 
@@ -42,4 +42,5 @@ export function Home() {
     }
   }, [walletConnected]);
 }
+
 export { connectWallet };
