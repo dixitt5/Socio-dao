@@ -42,4 +42,4 @@ export function Home() {
     }
   }, [walletConnected]);
 }
-export { connectWallet as default };
+export { connectWallet };
