@@ -5,8 +5,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { Home, connectWallet } from "../Components/wallet";
+// import { useAccount, useProvider } from "wagmi";
+// import aapp from "../_app";
 
 export default function ButtonAppBar() {
+  // const account = useAccount();
   return (
     <Box sx={{ flexGrow: 1 }} className="appbox">
       <AppBar position="static" className="appbar">
@@ -20,9 +25,15 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             DAO
           </Typography>
-          <Button color="inherit" variant="contained" className="butn">
+          <Button
+            color="inherit"
+            variant="contained"
+            className="butn"
+            onClick={connectWallet()}
+          >
             Connect Wallet
           </Button>
+          {/* <ConnectButton /> */}
         </Toolbar>
       </AppBar>
     </Box>
