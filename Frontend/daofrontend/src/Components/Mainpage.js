@@ -1,7 +1,6 @@
 import Appbar from "./Appbar";
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@mui/material/Grid";
-
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
@@ -17,12 +16,20 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Dialog1 from "./Dialog";
 
 const Mainpage = () => {
   const history = useNavigate();
+  const { open, setopen } = useState(false);
   return (
     <div>
       <Appbar />
+      <Dialog1
+        setoff={() => {
+          setopen(false);
+        }}
+        do={open}
+      />
       <div className="main">
         <Breadcrumbs aria-label="breadcrumb">
           <Link
@@ -65,7 +72,13 @@ const Mainpage = () => {
               aria-label="Disabled elevation buttons"
               className="main-btns"
             >
-              <Button>Create a new proposal</Button>
+              <Button
+                onClick={() => {
+                  setopen(true);
+                }}
+              >
+                Create a new proposal
+              </Button>
               <Button>Delegate vote</Button>
             </ButtonGroup>
           </Grid>
