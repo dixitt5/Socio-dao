@@ -44,14 +44,11 @@ const Mainpage = () => {
           className="inside-main"
         >
           <Grid item xs={8}>
-            <Typography variant="h3">Write a name here</Typography>
+            <Typography variant="h3">Socio-DAO</Typography>
             <Typography variant="subtitle2" className="newtextmain">
-              write the detail about the current plan of society. Lorem ipsum
-              dolor sit amet consectetur, adipisicing elit. Corporis, assumenda?
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto,
-              quod culpa eaque facere autem dolore, explicabo architecto
-              reiciendis commodi eum dicta, id quaerat laboriosam vitae atque
-              non pariatur deserunt.
+              You can create a proposal for any needs for the betterment of
+              society. You can also create a proposal that transfers certain
+              amount of funds to a specific service man.
             </Typography>
             <div className="top">
               <TwitterIcon />

@@ -1,4 +1,7 @@
-import { getDaoContractInstance } from "./contractInstances";
+import {
+  getDaoContractInstance,
+  ExecutionContractInstance,
+} from "./contractInstances";
 import Home from "./wallet";
 import Proposals from "./proposals";
 import { fetchAllProposals } from "./proposals";
@@ -30,5 +33,15 @@ export const executeProposal = async (proposalId, _code, _value) => {
   } catch (error) {
     console.error(error);
     window.alert(error.data.message);
+  }
+};
+export const changeServiceGuy = async (_address) => {
+  try {
+    const signer = await getProviderOrSigner(true);
+    const executionContract = ExecutionContractInstance(signer);
+    const tx = await executionContract.setServiceGuy(_address);
+    await tx.wait();
+  } catch (error) {
+    console.error(error);
   }
 };
