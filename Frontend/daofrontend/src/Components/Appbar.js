@@ -53,7 +53,6 @@ export default function ButtonAppBar() {
         providerOptions: {},
         disableInjectedProvider: false,
       });
-      console.log("heyy");
       connectWallet();
     }
   }, [walletConnected]);
