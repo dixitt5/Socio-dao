@@ -43,6 +43,6 @@ const Dialog1 = (props) => {
       </Dialog>
     </div>
   );
-};
+}; /////changed
 
 export default Dialog1;
