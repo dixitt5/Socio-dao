@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Banner from "./Components/Banner";
 import Home from "./Components/Home";
 import Mainpage from "./Components/Mainpage";
+import { Dialog } from "@mui/material";
 const App = () => {
   return (
     <div>
@@ -14,6 +15,7 @@ const App = () => {
             <Route index element={<Home />} />
           </Route>
           <Route exact path="/main" element={<Mainpage />} />
+          <Route exact path="/dialog" element={<Dialog />} />
         </Routes>
       </BrowserRouter>
     </div>
