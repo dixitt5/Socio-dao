@@ -14,48 +14,6 @@ import IconButton from "@mui/material/IconButton";
 // import aapp from "../_app";
 
 export default function ButtonAppBar() {
-  const [walletConnected, setWalletConnected] = useState(false);
-  const web3ModalRef = useRef();
-
-  const connectWallet = async () => {
-    try {
-      await getProviderOrSigner();
-      setWalletConnected(true);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const getProviderOrSigner = async (needSigner = false) => {
-    try {
-      const provider = await web3ModalRef.current.connect();
-      const web3Provider = new providers.Web3Provider(provider);
-      const { chainId } = await web3Provider.getNetwork();
-      if (chainId !== 80001) {
-        window.alert("Change the network to Mumbai");
-        throw new Error("Change network to Mumbai");
-      }
-
-      if (needSigner) {
-        const signer = web3Provider.getSigner();
-        return signer;
-      }
-      return web3Provider;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    if (!walletConnected) {
-      web3ModalRef.current = new Web3Modal({
-        network: "mumbai",
-        providerOptions: {},
-        disableInjectedProvider: false,
-      });
-      connectWallet();
-    }
-  }, [walletConnected]);
   // const account = useAccount();
   const [walletConnected, setWalletConnected] = useState(false);
   const web3ModalRef = useRef();
