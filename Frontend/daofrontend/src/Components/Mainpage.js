@@ -20,15 +20,19 @@ import Dialog1 from "./Dialog";
 
 const Mainpage = () => {
   const history = useNavigate();
-  const { open, setopen } = useState(false);
+  const [open, setopen] = useState(false);
+  const openFun = () => {
+    setopen(true);
+    console.log("hi");
+  };
   return (
     <div>
       <Appbar />
       <Dialog1
-        setoff={() => {
+        open={open}
+        close={() => {
           setopen(false);
         }}
-        do={open}
       />
       <div className="main">
         <Breadcrumbs aria-label="breadcrumb">
@@ -72,17 +76,12 @@ const Mainpage = () => {
               aria-label="Disabled elevation buttons"
               className="main-btns"
             >
-              <Button
-                onClick={() => {
-                  setopen(true);
-                }}
-              >
-                Create a new proposal
-              </Button>
+              <Button onClick={openFun}>Create a new proposal</Button>
               <Button>Delegate vote</Button>
             </ButtonGroup>
           </Grid>
         </Grid>
+
         <Box mt={10}>
           <BottomNavigation showLabels>
             <BottomNavigationAction label="Proposals" icon={<RestoreIcon />} />
