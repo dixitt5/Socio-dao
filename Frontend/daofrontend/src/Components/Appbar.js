@@ -76,7 +76,13 @@ export default function ButtonAppBar() {
             className="butn"
             onClick={connectWallet}
           >
-            Connect Wallet
+            {walletConnected ? (
+              <Typography variant="caption" color="green">
+                Connected
+              </Typography>
+            ) : (
+              <Typography variant="caption">Connect Wallet</Typography>
+            )}
           </Button>
           {/* <ConnectButton /> */}
         </Toolbar>
