@@ -37,7 +37,7 @@ export function Dialog1(props) {
 
   return (
     <div className="dialog">
-      <Dialog open={true}>
+      <Dialog open={props.open}>
         {/*  true */}
         <DialogTitle>Add your proposal</DialogTitle>
         <DialogContent>
@@ -80,7 +80,7 @@ export function Dialog1(props) {
           <Button variant="outlined" onClick={createProposal}>
             Submit
           </Button>
-          <Button variant="outlined" onClick={props.setoff}>
+          <Button variant="outlined" onClick={props.close}>
             Close
           </Button>
         </DialogActions>
