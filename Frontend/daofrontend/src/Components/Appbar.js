@@ -8,6 +8,8 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Dialog from "./Dialog";
+import VoteAndEx from "../utils/voteAndExecution";
 // import { ConnectButton } from "@rainbow-me/rainbowkit";
 // import Wallet from "../utils/wallet";
 // import { useAccount, useProvider } from "wagmi";
@@ -22,6 +24,7 @@ export default function ButtonAppBar() {
     try {
       await getProviderOrSigner();
       setWalletConnected(true);
+      console.log("wallet");
     } catch (error) {
       console.error(error);
     }
@@ -31,6 +34,7 @@ export default function ButtonAppBar() {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
     const { chainId } = await web3Provider.getNetwork();
+    console.log("signer");
     if (chainId !== 80001) {
       window.alert("Change the network to Mumbai");
       throw new Error("Change network to Mumbai");
@@ -77,6 +81,9 @@ export default function ButtonAppBar() {
           {/* <ConnectButton /> */}
         </Toolbar>
       </AppBar>
+      {/* fun3 = {walletConnected} fun4 = {()=>{setWalletConnected(true)}} */}
+      {/* <VoteAndEx fun={getProviderOrSigner(true)} fun2={getProviderOrSigner()} /> */}
+      <Dialog fun={getProviderOrSigner(true)} fun2={getProviderOrSigner()} />;
     </Box>
   );
 }

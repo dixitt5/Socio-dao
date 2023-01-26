@@ -5,7 +5,6 @@ import {
   EXECUTION_CONTRACT_ADDRESS,
   EXECUTION_CONTRACT_ABI,
 } from "../constants";
-import Home from "./wallet";
 
 export const getDaoContractInstance = (providerOrSigner) => {
   return new Contract(
