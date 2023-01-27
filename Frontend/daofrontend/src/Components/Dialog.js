@@ -37,7 +37,7 @@ export function Dialog1(props) {
 
   return (
     <div className="dialog">
-      <Dialog open={true}>
+      <Dialog open={false}>
         {/*  true */}
         <DialogTitle>Add your proposal</DialogTitle>
         <DialogContent>
