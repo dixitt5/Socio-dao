@@ -6,6 +6,7 @@ import Banner from "./Components/Banner";
 import Home from "./Components/Home";
 import Mainpage from "./Components/Mainpage";
 import { Dialog } from "@mui/material";
+import OwnerDashboard from "./Components/OwnerDashboard";
 const App = () => {
   return (
     <div>
@@ -16,6 +17,7 @@ const App = () => {
           </Route>
           <Route exact path="/main" element={<Mainpage />} />
           <Route exact path="/dialog" element={<Dialog />} />
+          <Route exact path="/owner" element={<OwnerDashboard />} />
         </Routes>
       </BrowserRouter>
     </div>
