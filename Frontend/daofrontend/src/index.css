@@ -54,6 +54,16 @@ code {
   padding-left: 20px;
   width: 400px;
   object-fit: contain;
+  animation: up-down 1.8s ease-in-out infinite alternate-reverse both;
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
 }
 
 .typo{
@@ -107,4 +117,7 @@ code {
   margin-left: 2px;
   margin-right: 2px;
   cursor: pointer;
+}
+.walletcolor{
+  color: green !important;
 }

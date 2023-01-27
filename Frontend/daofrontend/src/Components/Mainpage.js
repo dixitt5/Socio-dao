@@ -16,19 +16,24 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Dialog1 from "./Dialog";
+import Dialoge from "./Dialoge";
+import Proposals from "./Proposals";
 
 const Mainpage = () => {
   const history = useNavigate();
-  const { open, setopen } = useState(false);
+  const [open, setopen] = useState(false);
+  const openFun = () => {
+    setopen(true);
+    console.log("hi");
+  };
   return (
     <div>
       <Appbar />
-      <Dialog1
-        setoff={() => {
+      <Dialoge
+        open={open}
+        close={() => {
           setopen(false);
         }}
-        do={open}
       />
       <div className="main">
         <Breadcrumbs aria-label="breadcrumb">
@@ -72,17 +77,12 @@ const Mainpage = () => {
               aria-label="Disabled elevation buttons"
               className="main-btns"
             >
-              <Button
-                onClick={() => {
-                  setopen(true);
-                }}
-              >
-                Create a new proposal
-              </Button>
+              <Button onClick={openFun}>Create a new proposal</Button>
               <Button>Delegate vote</Button>
             </ButtonGroup>
           </Grid>
         </Grid>
+
         <Box mt={10}>
           <BottomNavigation showLabels>
             <BottomNavigationAction label="Proposals" icon={<RestoreIcon />} />
@@ -90,6 +90,7 @@ const Mainpage = () => {
             <BottomNavigationAction label="Voters" icon={<LocationOnIcon />} />
           </BottomNavigation>
         </Box>
+        <Proposals />
       </div>
     </div>
   );

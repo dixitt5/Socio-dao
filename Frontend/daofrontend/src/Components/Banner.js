@@ -30,7 +30,7 @@ const Banner = () => {
             aria-label="Disabled elevation buttons"
             className="new-btn"
           >
-            <Button>Read Docs</Button>
+            <Button onClick={() => history("/owner")}>Owner DashBoard</Button>
             <Button
               onClick={() => {
                 history("/main");
