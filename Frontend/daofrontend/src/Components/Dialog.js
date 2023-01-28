@@ -8,25 +8,22 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import { getDaoContractInstance } from "../utils/contractInstances";
 import { useState } from "react";
-import { utils } from "ethers";
 import Proposals from "./Proposals";
+import { utils } from "ethers";
 
-export function Dialoge(props) {
+export function Dialog1(props) {
   const [proposalLabel, setProposalLabel] = useState("");
   const [proposalValue, setProposalValue] = useState(0);
   const [proposalCode, setProposalCode] = useState(0);
-  const idToCode = new Map();
-  const idToValue = new Map();
-  const idToLabel = new Map();
-  var id = 0;
+  // const idToCode = new Map();
+  // const idToValue = new Map();
+  // const idToLabel = new Map();
+  // var id = 0;
 
   const createProposal = async () => {
     try {
-      // const etherValue = utils.parseEther(proposalValue.toString());
-      // console.log("hello");
-      const signer = await props.signer;
-      // console.log(signer);
-      // console.log("hii");
+      const signer = await props.fun;
+      console.log(signer);
       const daoContract = getDaoContractInstance(signer);
       const tx = await daoContract.createProposal(proposalLabel);
       // add text from the user
@@ -34,21 +31,22 @@ export function Dialoge(props) {
       await tx.wait();
       // await props.numProp;
       // setLoading(false);
-      idToCode.set(id, proposalCode);
-      idToLabel.set(id, proposalLabel);
-      idToValue.set(id, proposalValue);
-      id++;
-      console.log(proposalLabel, proposalCode, proposalValue, id);
+      // idToCode.set(id, proposalCode);
+      // idToLabel.set(id, proposalLabel);
+      // idToValue.set(id, proposalValue);
+      // id++;
+      console.log(proposalLabel, proposalCode, proposalValue);
     } catch (error) {
       console.error(error);
+      window.alert(error.data.message);
     }
   };
 
   return (
-    <div className="dialoge">
-      <Dialog open={props.open}>
+    <div className="dialog">
+      <Dialog open={true}>
         {/*  true */}
-        <DialogTitle>Add your proposal</DialogTitle>
+        <DialogTitle>Add your proposal:</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Please add the label and details for your proposed plan.
@@ -85,29 +83,27 @@ export function Dialoge(props) {
             onChange={(e) => setProposalCode(e.target.value)}
           />
           <DialogContentText>
-            Current Service Guy : {props.guy}
+            {/* Current Service Guy : {props.guy} */}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button variant="outlined" onClick={createProposal}>
             Submit
           </Button>
-          <Button variant="outlined" onClick={props.close}>
+          <Button variant="outlined" onClick={props.setoff}>
             Close
           </Button>
         </DialogActions>
       </Dialog>
-      <Proposals
+      {/* <Proposals
         value={proposalValue}
         code={proposalCode}
         idCode={idToCode}
         idLabel={idToLabel}
         idValue={idToValue}
-      />
+      /> */}
     </div>
   );
 } /////changed
-{
-  /* fun3 = {walletConnected} fun4 = {()=>{setWalletConnected(true)}} */
-}
-export default Dialoge;
+
+export default Dialog1;

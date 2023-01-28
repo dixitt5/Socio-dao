@@ -16,7 +16,7 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import Dialoge from "./Dialoge";
+import Dialoge from "./Dialog";
 import Proposals from "./Proposals";
 
 const Mainpage = () => {

@@ -9,7 +9,7 @@ import Button from "@mui/material/Button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ExecutionContractInstance } from "../utils/contractInstances";
-import Dialoge from "./Dialoge";
+import Dialoge from "./Dialog";
 
 export function OwnerDashboard(props) {
   const history = useNavigate();
@@ -18,7 +18,7 @@ export function OwnerDashboard(props) {
 
   const changeServiceGuy = async () => {
     try {
-      const signer = await props.fun3;
+      const signer = await props.fun;
       const executionContract = ExecutionContractInstance(signer);
       const tx = await executionContract.setServiceGuy(serviceGuyName);
       await tx.wait();
@@ -73,7 +73,7 @@ export function OwnerDashboard(props) {
         </DialogActions>
       </Dialog>
 
-      <Dialoge guy={serviceGuyName} />
+      {/* <Dialoge guy={serviceGuyName} /> */}
     </div>
   );
 }

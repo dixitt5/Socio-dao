@@ -8,9 +8,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import Dialoge from "./Dialoge";
-import OwnerDashboard from "./OwnerDashboard";
-import Proposals from "./Proposals";
+import Dialog from "./Dialog";
+// import OwnerDashboard from "./OwnerDashboard";
+// import Proposals from "./Proposals";
 // import { ConnectButton } from "@rainbow-me/rainbowkit";
 // import Wallet from "../utils/wallet";
 // import { useAccount, useProvider } from "wagmi";
@@ -88,12 +88,9 @@ export default function ButtonAppBar() {
           {/* <ConnectButton /> */}
         </Toolbar>
       </AppBar>
-      <Dialoge signer={getProviderOrSigner(true)} />
-
-      {/* <VoteAndEx fun={getProviderOrSigner(true)} fun2={getProviderOrSigner()} /> */}
-      {/* fun3 = {walletConnected} fun4 = {()=>{setWalletConnected(true)}} */}
+      <Dialog fun={getProviderOrSigner(true)} fun2={getProviderOrSigner()} />;
       {/* <OwnerDashboard
-        fun3={getProviderOrSigner(true)}
+        fun={getProviderOrSigner(true)}
         fun4={getProviderOrSigner()}
       />
       <Proposals

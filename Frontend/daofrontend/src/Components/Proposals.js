@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Typography } from "@mui/material";
 import { getDaoContractInstance } from "../utils/contractInstances";
-import Dialoge from "./Dialoge";
+import Dialoge from "./Dialog";
 import Box from "@mui/material/Box";
 
 export default function Proposals(props) {
@@ -11,7 +11,7 @@ export default function Proposals(props) {
 
   const getNumProposalsInDAO = async () => {
     try {
-      const provider = await props.fun;
+      const provider = await props.fun5;
       const contract = getDaoContractInstance(provider);
       const daoNumProposals = await contract.numProposals();
       console.log("number : " + daoNumProposals.toString());
@@ -24,7 +24,7 @@ export default function Proposals(props) {
 
   const fetchProposalById = async (id) => {
     try {
-      const provider = await props.fun;
+      const provider = await props.fun5;
       const daoContract = getDaoContractInstance(provider);
       const proposal = await daoContract.proposals(id);
       const parsedProposal = {
@@ -60,7 +60,7 @@ export default function Proposals(props) {
 
   const voteOnProposal = async (proposalId, _vote) => {
     try {
-      const signer = await props.fun2;
+      const signer = await props.fun6;
       const daoContract = getDaoContractInstance(signer);
       let vote = _vote === "YAY" ? 0 : 1;
       const tx = await daoContract.voteOnProposal(proposalId, vote);
@@ -76,7 +76,7 @@ export default function Proposals(props) {
 
   const executeProposal = async (proposalId, _code, _value) => {
     try {
-      const signer = await props.fun2;
+      const signer = await props.fun6;
       const daoContract = getDaoContractInstance(signer);
       const tx = await daoContract.executeProposal(proposalId, _code, _value);
       // setLoading(true);
