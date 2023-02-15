@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.17;
+
+import "@chainlink/contracts/src/v0.8/ChainlinkClient.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 interface IExecutionContract {
@@ -11,7 +13,8 @@ interface ISocioTokens {
     function balanceOf(address owner) external view returns (uint256);
 }
 
-contract socioContract is Ownable {
+contract socioContract is Ownable, ChainlinkClient {
+    using Chainlink for Chainlink.Request;
     enum Vote {
         YAY,
         NAY
@@ -28,14 +31,36 @@ contract socioContract is Ownable {
 
     mapping(uint256 => Proposal) public proposals;
     uint256 public numProposals;
+    uint256 private fee;
     address serviceGuy;
+    address private oracle;
+    string private jobId;
+    string public claims;
 
     IExecutionContract execution;
     ISocioTokens socioTokens;
 
-    constructor(address _execution, address _socioTokens) payable {
+    event RequestFulfilled(bytes32 indexed requestId);
+
+    constructor(
+        address _execution,
+        address _socioTokens,
+        address _oracle,
+        string memory _jobId,
+        address _link
+    ) {
         execution = IExecutionContract(_execution);
         socioTokens = ISocioTokens(_socioTokens);
+
+        if (_link == address(0)) {
+            setPublicChainlinkToken();
+        } else {
+            setChainlinkToken(_link);
+        }
+
+        oracle = _oracle;
+        jobId = _jobId;
+        fee = (1 * LINK_DIVISIBILITY) / 10; // 0,1 * 10**18 (Varies by network and job)
     }
 
     modifier tokenHolderOnly() {
@@ -60,6 +85,8 @@ contract socioContract is Ownable {
         _;
     }
 
+    function purchaseProperty() public payable {}
+
     function addBalance() public payable {
         address to = address(this);
         (bool success, ) = to.call{value: msg.value}("");
@@ -75,9 +102,29 @@ contract socioContract is Ownable {
         return _user.balance;
     }
 
-    function createProposal(
-        string memory _proposal
-    ) external tokenHolderOnly returns (uint256) {
+    // user will need to pass their aadhar no. as parameter
+    function createIdentity(string memory id) public {
+        Chainlink.Request memory request = buildOperatorRequest(
+            stringToBytes32(jobId),
+            this.fulfill.selector
+        );
+        request.add("aadhar", id);
+        sendOperatorRequestTo(oracle, request, fee);
+    }
+
+    function fulfill(bytes32 requestId, string memory _claimId)
+        public
+        recordChainlinkFulfillment(requestId)
+    {
+        emit RequestFulfilled(requestId);
+        claims = _claimId;
+    }
+
+    function createProposal(string memory _proposal)
+        external
+        tokenHolderOnly
+        returns (uint256)
+    {
         // require(nftMarketplace.available(_nftTokenId), "Nft not for sale");
 
         Proposal storage proposal = proposals[numProposals];
@@ -88,10 +135,11 @@ contract socioContract is Ownable {
         return numProposals - 1;
     }
 
-    function voteOnProposal(
-        uint256 proposalId,
-        Vote vote
-    ) external tokenHolderOnly activeProposalOnly(proposalId) {
+    function voteOnProposal(uint256 proposalId, Vote vote)
+        external
+        tokenHolderOnly
+        activeProposalOnly(proposalId)
+    {
         Proposal storage proposal = proposals[proposalId];
 
         uint256 voterTokenBalance = socioTokens.balanceOf(msg.sender);
@@ -134,8 +182,26 @@ contract socioContract is Ownable {
         proposal.executed = true;
     }
 
+    // Helper functions!!
+
     function withdrawEther() external onlyOwner {
         payable(owner()).transfer(address(this).balance);
+    }
+
+    function stringToBytes32(string memory source)
+        private
+        pure
+        returns (bytes32 result)
+    {
+        bytes memory tempEmptyStringTest = bytes(source);
+        if (tempEmptyStringTest.length == 0) {
+            return 0x0;
+        }
+
+        assembly {
+            // solhint-disable-line no-inline-assembly
+            result := mload(add(source, 32))
+        }
     }
 
     receive() external payable {}
