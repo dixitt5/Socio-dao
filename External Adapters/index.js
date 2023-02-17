@@ -27,7 +27,7 @@ const createRequest = async(input, callback) => {
   const validator = new Validator(input, customParams);
 
   const jobRunID = validator.validated.id;
-  const aadhar = parseInt(validator.validated.data.aadhar);
+  const aadhar = validator.validated.data.aadhar
 
   const url = `https://api-staging.polygonid.com/v1/issuers/${issuer}/schemas/${schema}/offers`;
   const body = {
