@@ -39,6 +39,7 @@ contract socioContract is Ownable, ChainlinkClient {
     socioToken property;
 
     event RequestFulfilled(bytes32 indexed requestId);
+    event proposalPassed(uint256 indexed Id);
 
     error NeedMoreEth();
 
@@ -159,32 +160,16 @@ contract socioContract is Ownable, ChainlinkClient {
         }
     }
 
-    // function executeProposal(
-    //     uint256 proposalId,
-    //     uint8 _code,
-    //     uint256 _value
-    // ) external payable tokenHolderOnly inactiveProposalOnly(proposalId) {
-    //     Proposal storage proposal = proposals[proposalId];
-    //     uint8 code = _code;
-    //     if (proposal.yayvotes > proposal.nayvotes) {
-    //         //this is where the execution part becomes active
-    //         if (code == 1) {
-    //             address to = address(this);
-    //             // address to = payable(_serviceGuy);
-    //             require(checkUserBalance(msg.sender) >= _value);
-    //             (bool success, ) = to.call{value: msg.value}("");
-    //             // require(bool,"error!");
-    //             require(success, "tx failed!");
-    //         } else {
-    //             address to = execution.getServiceGuy();
-    //             require(treasuryBalance() >= _value, "not enough funds");
-    //             (bool success, ) = to.call{value: _value}("");
-    //             require(success, "transaction failed");
-    //         }
-    //     }
+    function executeProposal(
+        uint256 proposalId
+    ) external payable tokenHolderOnly inactiveProposalOnly(proposalId) {
+        Proposal storage proposal = proposals[proposalId];
+        if (proposal.yayvotes > proposal.nayvotes) {
+            emit proposalPassed(proposalId);
+        }
 
-    //     proposal.executed = true;
-    // }
+        proposal.executed = true;
+    }
 
     // set the price of each property. only allowed by owner of the contract
     function setPrice(uint64 tokenId, uint256 _price) public onlyOwner {
