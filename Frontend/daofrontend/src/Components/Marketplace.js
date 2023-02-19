@@ -88,18 +88,15 @@ const Marketplace = () => {
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
               sx={{ height: 140 }}
-              image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTghgIebRs8xyJHT4xmSaODbUFzdxZiI_dWiqus4e--&s"
-              title="green iguana"
+              image="https://ipfs.io/ipfs/QmP4hLHgyDqWkcRGo1v9sCvLezSqiKufD9r9cTvLbYAyBr"
+              title="2 BHK"
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
-                House no.
+                2 BHK
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                house description Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Totam error placeat sunt ratione, libero
-                provident vero quisquam quidem quas facilis tempora accusamus
-                recusandae illo.
+                A luxorious 2 BHK home.
               </Typography>
             </CardContent>
             <CardActions>

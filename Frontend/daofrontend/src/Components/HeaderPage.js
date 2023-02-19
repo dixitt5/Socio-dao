@@ -17,7 +17,6 @@ import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import Web3Modal from "web3modal";
 import { providers } from "ethers";
 import Contract from "../utils/contract";
 import { getGlobalState, setGlobalState, useGlobalState } from "../store";
@@ -26,6 +25,7 @@ function MenuAppBar(props) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [walletConnected, setWalletConnected] = useState(false);
+  const [walletAddress]=useGlobalState("walletAddress");
 
   // const web3ModalRef = useRef();
   const connectwallet = async () => {
@@ -37,7 +37,16 @@ function MenuAppBar(props) {
     }
   };
 
-  // const [walletAddress]=getGlobalState(walletAddress);
+  // const wallettAddress = async () => {
+  //   try{
+  //     const address = getGlobalState('walletAddress');
+  //     return address;
+  //   }
+  //   catch {
+  //     console.error(error);
+  //   }
+  // }
+
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -101,7 +110,7 @@ function MenuAppBar(props) {
                   color="inherit"
                 >
                   <AccountCircle />
-                  <Typography variant="subtitle2">"walletAddress"</Typography>
+                  <Typography variant="subtitle2">wallet address</Typography>
                 </IconButton>
                 <Menu
                   id="menu-appbar"

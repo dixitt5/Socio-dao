@@ -3,7 +3,7 @@ import { Contract, providers } from "ethers";
 import { getDaoContractInstance } from "./instances";
 import { useGlobalState, setGlobalState, getGlobalState } from "../store";
 import { SOCIO_DAO_CONTRACT_ADDRESS } from "../constants";
-// const web3ModalRef = useRef();
+
 async function connectWallet() {}
 try {
   await getProviderOrSigner();
@@ -31,8 +31,8 @@ async function getProviderOrSigner() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
-    setGlobalState("walletAddress", signer.toString());
-    console.log(signer);
+    // const address = await signer.getAddress();
+    // setGlobalState("walletAddress", address);
     return provider.getSigner();
   } else {
     alert("Install Metamask Wallet to run the application");
