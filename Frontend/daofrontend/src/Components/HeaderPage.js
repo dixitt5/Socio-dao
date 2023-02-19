@@ -161,7 +161,9 @@ function MenuAppBar(props) {
                 aria-label="Disabled elevation buttons"
                 className="new-btn"
               >
-                <Button>Owner DashBoard</Button>
+                <Link to="/market">
+                  <Button>Available Properties</Button>
+                </Link>
                 <Link to="/voting">
                   <Button>Get started</Button>
                 </Link>
