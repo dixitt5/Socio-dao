@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Breadcrumbs, Button, ButtonGroup } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -9,6 +9,10 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import QRCode from "qrcode.react";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 
 const Marketplace = () => {
   const data = {
@@ -45,7 +49,10 @@ const Marketplace = () => {
       ],
     },
   };
-
+  const [open, dopen] = useState(false);
+  const buyChange = () => {
+    dopen(true);
+  };
   return (
     <div className="main">
       <Breadcrumbs aria-label="breadcrumb">
@@ -60,14 +67,21 @@ const Marketplace = () => {
         </Link>
         <Typography color="text.primary">Marketplace</Typography>
       </Breadcrumbs>
-      <div className="setMargin">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "40px",
+          marginBottom: "120px",
+        }}
+      >
         <Typography variant="h5" sx={{ fontWeight: "400", color: "black" }}>
           You want to Buy property in our society?
           <br />
           Verify your aadhar number to proceed for sale
         </Typography>
         <Button variant="contained">verify yourself</Button>
-      </div>
+      </Box>
       <div>
         <Typography
           variant="h4"
@@ -100,12 +114,38 @@ const Marketplace = () => {
               </Typography>
             </CardContent>
             <CardActions>
-              <Button size="small">Buy</Button>
+              <Button size="small" onClick={buyChange}>
+                Buy
+              </Button>
             </CardActions>
           </Card>
         </div>
       </div>
-      <QRCode value={JSON.stringify(data)} />
+
+      <Dialog open={open} sx={{ padding: "150px" }}>
+        <DialogTitle>Scan the QR Code to proceed</DialogTitle>
+        <DialogContent
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          {" "}
+          <QRCode value={JSON.stringify(data)} />
+        </DialogContent>
+        <DialogActions
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Button variant="contained" onClick={() => dopen(false)}>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
