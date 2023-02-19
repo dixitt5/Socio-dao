@@ -1,12 +1,8 @@
 import { ethers } from "ethers";
 import { Contract, providers } from "ethers";
 import { getDaoContractInstance } from "./instances";
-import {
-    useGlobalState,
-    setGlobalState,
-    getGlobalState,
-  } from "../store";
-
+import { useGlobalState, setGlobalState, getGlobalState } from "../store";
+import { SOCIO_DAO_CONTRACT_ADDRESS } from "../constants";
 // const web3ModalRef = useRef();
 async function connectWallet() {}
 try {
@@ -34,6 +30,9 @@ async function getProviderOrSigner() {
   if (window.ethereum) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    setGlobalState("walletAddress", signer.toString());
+    console.log(signer);
     return provider.getSigner();
   } else {
     alert("Install Metamask Wallet to run the application");
@@ -66,57 +65,65 @@ async function getNumProposalsInDAO() {
   }
 }
 
-async function fetchProposalById (id) {
-    try {
-      const provider = await getProviderOrSigner();
-      const daoContract = getDaoContractInstance(provider);
-      const proposal = await daoContract.proposals(id);
-      const parsedProposal = {
-        proposalId: id,
-        label: proposal.label.toString(),
-        deadline: new Date(parseInt(proposal.deadline.toString()) * 1000),
-        yayVotes: proposal.yayvotes.toString(),
-        nayVotes: proposal.nayvotes.toString(),
-        executed: proposal.executed,
-      };
-      return parsedProposal;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+async function fetchProposalById(id) {
+  try {
+    const provider = await getProviderOrSigner();
+    const daoContract = getDaoContractInstance(provider);
+    const proposal = await daoContract.proposals(id);
+    const parsedProposal = {
+      proposalId: id,
+      label: proposal.label.toString(),
+      deadline: new Date(parseInt(proposal.deadline.toString()) * 1000),
+      yayVotes: proposal.yayvotes.toString(),
+      nayVotes: proposal.nayvotes.toString(),
+      executed: proposal.executed,
+    };
+    return parsedProposal;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-  async function fetchAllProposals () {
-    try {
-      const proposals = [];
-      const num = getGlobalState('numProposals');
-      for (let i = 0; i < num; i++) {
-        const proposal = await fetchProposalById(i);
-        proposals.push(proposal);
-      }
-      setGlobalState(proposals,proposals);
-      return proposals;
-    } catch (error) {
-      console.error(error);
+async function fetchAllProposals() {
+  try {
+    const proposals = [];
+    const num = getGlobalState("numProposals");
+    for (let i = 0; i < num; i++) {
+      const proposal = await fetchProposalById(i);
+      proposals.push(proposal);
     }
-  };
+    setGlobalState(proposals, proposals);
+    return proposals;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-  async function voteOnProposal  (proposalId, _vote)  {
-    try {
-      const signer = await getProviderOrSigner();
-      const daoContract = getDaoContractInstance(signer);
-      let vote = _vote === "YAY" ? 0 : 1;
-      const tx = await daoContract.voteOnProposal(proposalId, vote);
+async function voteOnProposal(proposalId, _vote) {
+  try {
+    const signer = await getProviderOrSigner();
+    const daoContract = getDaoContractInstance(signer);
+    let vote = _vote === "YAY" ? 0 : 1;
+    const tx = await daoContract.voteOnProposal(proposalId, vote);
     //   setLoading(true);
-      await tx.wait();
+    await tx.wait();
     //   setLoading(false);
-      await fetchAllProposals();
-    } catch (error) {
-      console.error(error);
-      window.alert(error.data.message);
-    }
-  };
+    await fetchAllProposals();
+  } catch (error) {
+    console.error(error);
+    window.alert(error.data.message);
+  }
+}
 
-
+const getDAOTreasuryBalance = async () => {
+  try {
+    const provider = await getProviderOrSigner();
+    const balance = await provider.getBalance(SOCIO_DAO_CONTRACT_ADDRESS);
+    //   setGlobalState(balance.toString());
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 const _ = {
   connectWallet,
@@ -126,5 +133,6 @@ const _ = {
   fetchProposalById,
   fetchAllProposals,
   voteOnProposal,
+  getDAOTreasuryBalance,
 };
 export default _;

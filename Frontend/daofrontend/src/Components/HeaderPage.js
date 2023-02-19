@@ -20,11 +20,13 @@ import { useState, useEffect, useRef } from "react";
 import Web3Modal from "web3modal";
 import { providers } from "ethers";
 import Contract from "../utils/contract";
+import { getGlobalState, setGlobalState, useGlobalState } from "../store";
 
 function MenuAppBar(props) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [walletConnected, setWalletConnected] = useState(false);
+
   // const web3ModalRef = useRef();
   const connectwallet = async () => {
     try {
@@ -34,6 +36,8 @@ function MenuAppBar(props) {
       console.error(error);
     }
   };
+
+  // const [walletAddress]=getGlobalState(walletAddress);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -49,21 +53,21 @@ function MenuAppBar(props) {
 
   // const getPorS = { getProviderOrSigner };
 
-  // useEffect(() => {
-  //   if (!walletConnected) {
-  //     web3ModalRef.current = new Web3Modal({
-  //       network: "mumbai",
-  //       providerOptions: {},
-  //       disableInjectedProvider: false,
-  //     });
+  useEffect(() => {
+    // if (!walletConnected) {
+    //   web3ModalRef.current = new Web3Modal({
+    //     network: "mumbai",
+    //     providerOptions: {},
+    //     disableInjectedProvider: false,
+    //   });
 
-  //     // connectWallet().then(() => {
-  //     //   getDAOTreasuryBalance();
-  //     //   getUserNFTBalance();
-  //     //   getNumProposalsInDAO();
-  //     // });
-  //   }
-  // }, [walletConnected]);
+    connectwallet().then(() => {
+      // Contract.getDAOTreasuryBalance();
+      // Contract.getUserNFTBalance();
+      Contract.getNumProposalsInDAO();
+    });
+    // }
+  }, [walletConnected]);
 
   return (
     <>
@@ -97,7 +101,7 @@ function MenuAppBar(props) {
                   color="inherit"
                 >
                   <AccountCircle />
-                  <Typography variant="subtitle2">wallet Address</Typography>
+                  <Typography variant="subtitle2">"walletAddress"</Typography>
                 </IconButton>
                 <Menu
                   id="menu-appbar"
