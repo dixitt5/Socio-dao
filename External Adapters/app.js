@@ -8,7 +8,8 @@ const port = process.env.EA_PORT || 8080;
 
 app.use(bodyParser.json());
 
-app.post("/", (req, res) => {
+app.use("/", (req, res) => {
+  console.log("Endpoint reached")
   createRequest(req.body, (status, result) => {
     res.status(status).json(result);
   });

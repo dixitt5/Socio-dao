@@ -62,7 +62,7 @@ contract ZKPVerifier is IZKPVerifier, Ownable {
         uint64 requestId,
         ICircuitValidator validator,
         ICircuitValidator.CircuitQuery memory query
-    ) external override onlyOwner returns (bool) {
+    ) external override returns (bool) {
         if (requestValidators[requestId] == ICircuitValidator(address(0x00))) {
             supportedRequests.push(requestId);
         }
