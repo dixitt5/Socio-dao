@@ -129,6 +129,19 @@ export const SOCIO_DAO_ABI = [
     type: "event",
   },
   {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "Id",
+        type: "uint256",
+      },
+    ],
+    name: "proposalPassed",
+    type: "event",
+  },
+  {
     stateMutability: "payable",
     type: "fallback",
   },
@@ -244,6 +257,19 @@ export const SOCIO_DAO_ABI = [
       },
     ],
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "proposalId",
+        type: "uint256",
+      },
+    ],
+    name: "executeProposal",
+    outputs: [],
+    stateMutability: "payable",
     type: "function",
   },
   {
