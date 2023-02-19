@@ -18,13 +18,22 @@ import ButtonGroup from "@mui/material/ButtonGroup";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import Web3Modal from "web3modal";
-import { Contract, providers } from "ethers";
+import { providers } from "ethers";
+import Contract from "../utils/contract";
 
 function MenuAppBar(props) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [walletConnected, setWalletConnected] = useState(false);
-  const web3ModalRef = useRef();
+  // const web3ModalRef = useRef();
+  const connectwallet = async () => {
+    try {
+      await Contract.connectWallet();
+      setWalletConnected(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -38,48 +47,23 @@ function MenuAppBar(props) {
     setAnchorEl(null);
   };
 
-  const connectWallet = async () => {
-    try {
-      await getProviderOrSigner();
-      setWalletConnected(true);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const getPorS = { getProviderOrSigner };
 
-  const getProviderOrSigner = async (needSigner = false) => {
-    const provider = await web3ModalRef.current.connect();
-    // console.log(provider);
-    const web3Provider = new providers.Web3Provider(provider);
+  // useEffect(() => {
+  //   if (!walletConnected) {
+  //     web3ModalRef.current = new Web3Modal({
+  //       network: "mumbai",
+  //       providerOptions: {},
+  //       disableInjectedProvider: false,
+  //     });
 
-    const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 80001) {
-      window.alert("Please switch to mumbai network!");
-      throw new Error("Please switch to mumbai network!");
-    }
-
-    if (needSigner) {
-      const signer = web3Provider.getSigner();
-      return signer;
-    }
-    return web3Provider;
-  };
-
-  useEffect(() => {
-    if (!walletConnected) {
-      web3ModalRef.current = new Web3Modal({
-        network: "mumbai",
-        providerOptions: {},
-        disableInjectedProvider: false,
-      });
-
-      // connectWallet().then(() => {
-      //   getDAOTreasuryBalance();
-      //   getUserNFTBalance();
-      //   getNumProposalsInDAO();
-      // });
-    }
-  }, [walletConnected]);
+  //     // connectWallet().then(() => {
+  //     //   getDAOTreasuryBalance();
+  //     //   getUserNFTBalance();
+  //     //   getNumProposalsInDAO();
+  //     // });
+  //   }
+  // }, [walletConnected]);
 
   return (
     <>
@@ -144,7 +128,7 @@ function MenuAppBar(props) {
                 checked={auth}
                 onChange={handleChange}
                 aria-label="login switch"
-                onClick={connectWallet}
+                onClick={connectwallet}
               />
             }
             label={auth ? "Disconnect wallet" : "Connect wallet"}

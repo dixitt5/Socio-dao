@@ -9,14 +9,14 @@ import Button from "@mui/material/Button";
 import { getDaoContractInstance } from "../utils/instances";
 import { ethcontext } from "./HeaderPage";
 import Web3Modal from "web3modal";
-import { Contract, providers } from "ethers";
+import { providers } from "ethers";
+import Contract from "../utils/contract";
 
 import { useState, useRef } from "react";
 import { utils } from "ethers";
 
 export function Dialoge(props) {
   const [label, setLabel] = useState("");
-  const web3ModalRef = useRef();
 
   // const getproviderorsignertrue = () => {
   //   context.getProviderOrSigner(true);
@@ -26,38 +26,15 @@ export function Dialoge(props) {
   //   context.getProviderOrSigner(false);
   // };
 
-  const getProviderOrSigner = async (needSigner = false) => {
-    const provider = await web3ModalRef.current.connect();
-    // console.log(provider);
-    const web3Provider = new providers.Web3Provider(provider);
-
-    const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 80001) {
-      window.alert("Please switch to mumbai network!");
-      throw new Error("Please switch to mumbai network!");
-    }
-
-    if (needSigner) {
-      const signer = web3Provider.getSigner();
-      return signer;
-    }
-    return web3Provider;
-  };
-
-  const createProposal = async () => {
+  const createproposal = async () => {
     try {
-      const signer = getProviderOrSigner(true);
-      const daoContract = getDaoContractInstance(signer);
-      const tx = await daoContract.createProposal(label);
-      // setLoading(true);
-      await tx.wait();
-      // await getNumProposalsInDAO();
-      // setLoading(false);
+      await Contract.createProposal(label);
     } catch (error) {
       console.error(error);
       window.alert(error.data.message);
     }
   };
+
   return (
     <div className="dialoge">
       <Dialog open={props.open}>
@@ -101,7 +78,7 @@ export function Dialoge(props) {
           </DialogContentText> */}
         </DialogContent>
         <DialogActions>
-          <Button variant="outlined" onClick={createProposal}>
+          <Button variant="outlined" onClick={createproposal}>
             Submit
           </Button>
           <Button variant="outlined" onClick={props.close}>

@@ -20,18 +20,35 @@ import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Contract from "../utils/contract";
+import { setGlobalState, getGlobalState, useGlobalState } from "../store";
 const Voting = () => {
   const history = useNavigate();
   const [open, setopen] = useState(false);
   const [expanded, setExpanded] = React.useState(false);
-
+  const [numProposals] = useGlobalState("numProposals");
+  setGlobalState('numProposals','1');
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
+  };
+  const numproposals = async () => {
+    try {
+      const proposals = await Contract.getNumProposalsInDAO();
+      setGlobalState("numProposals", proposals.toString());
+      const prop = getGlobalState('numProposals');
+      console.log(prop);
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div>
       <BottomNavigation showLabels>
-        <BottomNavigationAction label="Proposals" icon={<RestoreIcon />} />
+        <BottomNavigationAction
+          label="Proposals"
+          icon={<RestoreIcon />}
+          onClick={numproposals}
+        />
         <BottomNavigationAction label="Holders" icon={<FavoriteIcon />} />
         <BottomNavigationAction label="Voters" icon={<LocationOnIcon />} />
       </BottomNavigation>
