@@ -31,8 +31,8 @@ async function getProviderOrSigner() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner();
-    // const address = await signer.getAddress();
-    // setGlobalState("walletAddress", address);
+    const address = await signer.getAddress();
+    setGlobalState("walletAddress", address);
     return provider.getSigner();
   } else {
     alert("Install Metamask Wallet to run the application");

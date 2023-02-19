@@ -74,6 +74,7 @@ const Marketplace = () => {
           marginTop: "40px",
           marginBottom: "120px",
         }}
+        className="marketi"
       >
         <Typography variant="h5" sx={{ fontWeight: "400", color: "black" }}>
           You want to Buy property in our society?
@@ -110,7 +111,109 @@ const Marketplace = () => {
                 2 BHK
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                A luxorious 2 BHK home.
+                A luxurious 2 BHK home.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small" onClick={buyChange}>
+                Buy
+              </Button>
+            </CardActions>
+          </Card>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image="https://ipfs.io/ipfs/QmP4hLHgyDqWkcRGo1v9sCvLezSqiKufD9r9cTvLbYAyBr"
+              title="2 BHK"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                2 BHK
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                A luxurious 2 BHK home.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small" onClick={buyChange}>
+                Buy
+              </Button>
+            </CardActions>
+          </Card>
+
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image="https://ipfs.io/ipfs/QmcaTmUdLB9ATcKPuQphztP6Vd5jjo19ni9f3vToAFUiyN"
+              title="1 BHK"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                1 BHK
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                A luxurious 1 BHK home.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small" onClick={buyChange}>
+                Buy
+              </Button>
+            </CardActions>
+          </Card>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image="https://ipfs.io/ipfs/QmcaTmUdLB9ATcKPuQphztP6Vd5jjo19ni9f3vToAFUiyN"
+              title="1 BHK"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                1 BHK
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                A luxurious 1 BHK home.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small" onClick={buyChange}>
+                Buy
+              </Button>
+            </CardActions>
+          </Card>
+
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image="https://ipfs.io/ipfs/QmZ2b5QLZvbW7au6fZUs53wtYNEDboUhacR3ArCmBmqvbz"
+              title="3 BHK"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                3 BHK
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                A luxurious 3 BHK home.
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small" onClick={buyChange}>
+                Buy
+              </Button>
+            </CardActions>
+          </Card>
+          <Card sx={{ maxWidth: 345 }}>
+            <CardMedia
+              sx={{ height: 140 }}
+              image="https://ipfs.io/ipfs/QmZ2b5QLZvbW7au6fZUs53wtYNEDboUhacR3ArCmBmqvbz"
+              title="3 BHK"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                3 BHK
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                A luxurious 3 BHK home.
               </Typography>
             </CardContent>
             <CardActions>

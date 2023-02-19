@@ -25,7 +25,7 @@ function MenuAppBar(props) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [walletConnected, setWalletConnected] = useState(false);
-  const [walletAddress]=useGlobalState("walletAddress");
+  const [walletAddress] = useGlobalState("walletAddress");
 
   // const web3ModalRef = useRef();
   const connectwallet = async () => {
@@ -37,16 +37,16 @@ function MenuAppBar(props) {
     }
   };
 
+  const addr = walletAddress.slice(0, 20) + "...";
+
   // const wallettAddress = async () => {
-  //   try{
-  //     const address = getGlobalState('walletAddress');
+  //   try {
+  //     const address = await signer.getAddress();
   //     return address;
-  //   }
-  //   catch {
+  //   } catch (error) {
   //     console.error(error);
   //   }
-  // }
-
+  // };
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -110,7 +110,7 @@ function MenuAppBar(props) {
                   color="inherit"
                 >
                   <AccountCircle />
-                  <Typography variant="subtitle2">wallet address</Typography>
+                  <Typography variant="subtitle2">{addr}</Typography>
                 </IconButton>
                 <Menu
                   id="menu-appbar"
@@ -158,10 +158,8 @@ function MenuAppBar(props) {
                 The Society DAOs..
               </Typography>
               <Typography variant="subtitle1" className="newtext">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptate repellendus esse consequuntur incidunt ipsam omnis
-                eius, beatae illum aliquid delectus cupiditate dolor amet
-                architecto
+                A DAO for housing societies, create value-adding proposals and
+                vote on them in decentralized manner.
               </Typography>
 
               <ButtonGroup
