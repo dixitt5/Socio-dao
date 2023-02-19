@@ -15,7 +15,7 @@ async function main() {
     const circuitId = "credentialAtomicQuerySig";
 
     const socioTokenContract = await ethers.getContractFactory("socioToken")
-    const socioToken = await socioTokenContract.deploy("ipfs://bafyreihwobwh2xsfasfndxop6ga3h7sllu5ojwb7rl5m23q6a5ashhjubm/{id}/metadata.json", 1, 2, 3)
+    const socioToken = await socioTokenContract.deploy("https://bafybeicbnfupurbbbuxpgxwandrqn7vi24vy7dc3mssdykjebhzetkopb4.ipfs.dweb.link/{id}.json", 3, 3, 3)
     await socioToken.deployed()
     await socioToken.deployTransaction.wait(6)
 
