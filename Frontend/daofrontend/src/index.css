@@ -5,15 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+   background-image: url("./images/liquid-cheese.png");
+   
+   background-repeat: no-repeat;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-/* ----------------------navbar-css------------------------------------------------------------------------------- */
-
 .appbar{
   color: white;
   font-weight: bolder;
@@ -25,30 +25,9 @@ code {
   color: black !important;
 }
 
-/* -----------------------------------------------------Home-page-css-------------------------------------------------- */
 .Banner{
   margin-top: 30px;
   padding: 20px !important;
-}
-
-
-@media only screen and (max-width: 600px) {
-  .img-1{
-    width: 300px !important;
-  }
-  .typo{
-    padding-left: 20px;
-    text-decoration: underline;
-    color: #1976D2;
-    margin-top: 10px;
-  }
-  .newtext{
-    padding: 20px;
-  }
-  .inside-main{
-    margin-top: 0px !important;
-    margin-left: 0px !important;
-  }
 }
 .img-1{
   padding-left: 20px;
@@ -56,7 +35,6 @@ code {
   object-fit: contain;
   animation: up-down 1.8s ease-in-out infinite alternate-reverse both;
 }
-
 @keyframes up-down {
   0% {
     transform: translateY(10px);
@@ -65,7 +43,6 @@ code {
     transform: translateY(-10px);
   }
 }
-
 .typo{
   padding-left: 40px;
   text-decoration: underline;
@@ -85,7 +62,26 @@ code {
   padding: 10px;
   margin-left: 25px;
 }
-/* ------------------------------------main-page-css--------------------------------------------------------------- */
+@media only screen and (max-width: 600px) {
+  .img-1{
+    width: 300px !important;
+  }
+  .typo{
+    padding-left: 20px;
+    text-decoration: underline;
+    color: #1976D2;
+    margin-top: 10px;
+  }
+  .newtext{
+    padding: 20px;
+  }
+  .inside-main{
+    margin-top: 0px !important;
+    margin-left: 0px !important;
+  }
+}
+
+/* ----------------------------------------------------voting-page-css-------------------------------------------------------------- */
 .main{
   margin: 20px;
   padding: 10px;
@@ -120,4 +116,14 @@ code {
 }
 .walletcolor{
   color: green !important;
+}
+
+/* -------------------------------------------------------------------------------------------------- */
+
+.marketi{
+  color: white !important;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255, 0.4);
 }

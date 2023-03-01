@@ -1,26 +1,29 @@
 {
-  "name": "daofrontend",
+  "name": "socio-dao",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.11.4",
+    "@mui/material": "^5.11.9",
     "@rainbow-me/rainbowkit": "^0.8.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "ethers": "^5.7.2",
+    "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hooks-global-state": "^2.1.0",
+    "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "wagmi": "^0.9.6",
     "web-vitals": "^2.1.4",
     "web3modal": "^1.9.11"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "craco start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -44,6 +47,6 @@
     ]
   },
   "devDependencies": {
-    "react-router-dom": "^6.6.2"
+    "@craco/craco": "^7.0.0"
   }
 }
